@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+.jumbotron {
+  text-align: center;
+    background: #dbdbdb;
+    height: 12rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.background {
+  background-color: #ffdf87;
+  color: white;
+
+}
