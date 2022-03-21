@@ -2,12 +2,11 @@ import React from 'react';
 import {Navbar, Container, Nav, NavDropdown, Jumbotron, Button  } from 'react-bootstrap';
 import { useState } from 'react';
 // components
-import Data from './data.js';
-
+import shoesArr from './data.js';
 import './App.css';
 
 function App() {
-  let [shoes, shoes변경] = useState(Data);
+  let [shoes, setShoes] = useState(shoesArr);
 
   return (
     <>
@@ -49,21 +48,29 @@ function App() {
           <Card shoes={shoes[0]}/>
           <Card shoes={shoes[1]}/>
           <Card shoes={shoes[2]}/>
+          {/* 컴포넌트의 반복을 조건문으로 줄이기 */}
+          { 
+            shoes.map((a,i)=>{
+             return <Card shoes={shoes[i]} i={i} key={i}/>
+            })
+          }
+
         </div>
     </div>   
     </>
     );
   }
 
-  function Card(props) {
-    return (
-      <div className="col-md-4">
-      <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%"/>
-      <h4> {props.shoes.title} </h4> 
-      <p> {props.shoes.content} & {props.shoes.price} </p>
+const Card = (props) => {
+  return (
+    <div className="col-md-4">
+      {/* <img src="https://codingapple1.github.io/shop/shoes1.jpg" alt="이미지" width="100%"/> 하드코딩 */}
+      <img src= { "https://codingapple1.github.io/shop/shoes" + (props.i+1) + ".jpg"} alt="이미지" width="100%"/> 
+      <h4> { props.shoes.title} </h4> 
+      <p> { props.shoes.content} & { props.shoes.price} </p>
     </div>
-    )
-  }
+  )
+}
 
 
 export default App;
